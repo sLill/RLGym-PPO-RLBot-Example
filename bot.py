@@ -6,13 +6,14 @@ from rlgym_compat import GameState
 
 from agent import Agent
 from your_obs import YourOBS
+from rlgym_sim.utils.obs_builders import DefaultObs
 
 class RLGymPPOBot(BaseAgent):
 	def __init__(self, name, team, index):
 		super().__init__(name, team, index)
-		self.obs_builder = YourOBS()
+		self.obs_builder = DefaultObs()
 		self.agent = Agent()
-		self.tick_skip = your_tick_skip_here
+		self.tick_skip = 240
 		self.game_state: GameState = None
 		self.controls = None
 		self.action = None
@@ -41,7 +42,7 @@ class RLGymPPOBot(BaseAgent):
 		delta = cur_time - self.prev_time
 		self.prev_time = cur_time
 
-		ticks_elapsed = round(delta * 120)
+		ticks_elapsed = round(delta * 240)
 		self.ticks += ticks_elapsed
 		self.game_state.decode(packet, ticks_elapsed)
 

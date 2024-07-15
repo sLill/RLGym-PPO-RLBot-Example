@@ -7,19 +7,19 @@ import torch
 import torch.nn.functional as F
 from torch.distributions import Categorical
 
-from your_act import YourActionParser
+from lookup_action import LookupAction
 import your_obs
 from discrete_policy import DiscreteFF
 
 # You can get the OBS size from the rlgym-ppo console print-outs when you start your bot
-OBS_SIZE = your_obs_size_here
+OBS_SIZE = (89,)
 
 # If you haven't set these, they are [256, 256, 256] by default
-POLICY_LAYER_SIZES = [your, layer, sizes, here]
+POLICY_LAYER_SIZES = [2048, 2048, 1024, 1024]
 
 class Agent:
 	def __init__(self):
-		self.action_parser = YourActionParser()
+		self.action_parser = LookupAction()
 		self.num_actions = len(self.action_parser._lookup_table)
 		cur_dir = os.path.dirname(os.path.realpath(__file__))
 		
