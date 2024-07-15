@@ -48,7 +48,7 @@ class RLGymPPOBot(BaseAgent):
 		delta = cur_time - self.prev_time
 		self.prev_time = cur_time
 
-		ticks_elapsed = round(delta * 240)
+		ticks_elapsed = round(delta * 120)
 		self.ticks += ticks_elapsed
 		self.game_state.decode(packet, ticks_elapsed)
 
