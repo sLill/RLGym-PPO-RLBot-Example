@@ -5,14 +5,10 @@ from rlbot.utils.structures.game_data_struct import GameTickPacket
 from rlgym_compat import GameState
 
 from agent import Agent
-from default_obs import DefaultObs
+from advanced_obs import AdvancedObs
 import common_values_local as common_values
 
-obs_builder = DefaultObs(
-    pos_coef=np.asarray([1 / common_values.SIDE_WALL_X, 1 / common_values.BACK_NET_Y, 1 / common_values.CEILING_Z]),
-    ang_coef=1 / np.pi,
-    lin_vel_coef=1 / common_values.CAR_MAX_SPEED,
-    ang_vel_coef=1 / common_values.CAR_MAX_ANG_VEL)
+obs_builder = AdvancedObs()
 
 class RLGymPPOBot(BaseAgent):
 	def __init__(self, name, team, index):
